@@ -37,7 +37,7 @@ let Query = {
                 }
             } 
             else {
-                return 'there is no current user...'
+                return 'there is no current user.....'
             }
         }
         catch( error ) {
