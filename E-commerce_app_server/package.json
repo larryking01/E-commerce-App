@@ -22,7 +22,8 @@
     "@babel/runtime": "^7.18.3",
     "apollo-server": "^3.8.2",
     "firebase": "8.10.0",
-    "graphql": "^16.5.0"
+    "graphql": "^16.5.0",
+    "xhr2": "^0.2.1"
   },
   "engines": {
     "node": "16.15.0"

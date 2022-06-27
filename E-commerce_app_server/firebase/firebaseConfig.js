@@ -7,15 +7,15 @@ require('firebase/storage')
 
 // app configuration object.
 const firebaseConfig = {
-    apiKey: "AIzaSyCGRJwGk-Mvz7kDAXSmqZZRZ6jTMKZuAd0",
-    authDomain: "restaurant-food-delivery-82446.firebaseapp.com",
-    projectId: "restaurant-food-delivery-82446",
-    storageBucket: "restaurant-food-delivery-82446.appspot.com",
-    messagingSenderId: "1046311146396",
-    appId: "1:1046311146396:web:8852c79a1e7f04c99b2e59"
+    apiKey: "AIzaSyCIDvGdcbN9H0FWfwrDvxFBniYxLosirLQ",
+    authDomain: "e-commerce-app-7430f.firebaseapp.com",
+    projectId: "e-commerce-app-7430f",
+    storageBucket: "e-commerce-app-7430f.appspot.com",
+    messagingSenderId: "288674218275",
+    appId: "1:288674218275:web:358e5ed8b9dc87b8b64c96"
 
 }
-
+  
 
 // initializing the firebase app.
 try {

@@ -67,9 +67,71 @@ let Query = {
             return `failed to fetch user details due to error: ${ error.code }: ${ error.message }`
         }
 
+    }, // end of fetch user details.
+
+
+    FetchProductImages: async function( parent, args, ctx, info ) {
+        try {
+            let imageUrl = await firebaseStorage.ref().child(`Product Images/${ args.productName }/${ args.fileName }`).getDownloadURL()
+            return `download url === ${ imageUrl }`
+
+        }
+        catch( error ) {
+            throw new Error (`failed to download image due to error; ${ error.code }: ${ error.message } `) 
+ 
+        }
+
+    }, // end of fetch product images.
+
+
+    FetchAllProducts: async function ( ) {
+        try {
+            let addedProductsArray = []
+            await fireStore.collection('Added Products Collection').get().then( currentSnapshot => {
+                currentSnapshot.forEach( product => {
+                    addedProductsArray.push( product.data() )
+                })
+                console.log( addedProductsArray )
+            } )
+            return addedProductsArray
+
+        }
+        catch (error) {
+            throw new Error(`failed to fetch products due to error. ${ error.code }: ${ error.message }`)
+        }
+
+    }, // end of fetch all products.
+
+
+    GetSelectedProductDetails: async function ( parent, args, ctx, info ) {
+        try {
+            let myArray = []
+            let selectedProduct = await fireStore.collection('Added Products Collection').where('name', '==', args.productName).get()
+            if( !selectedProduct.empty ) {
+                selectedProduct.forEach( matchingProduct => {
+                    //console.log( matchingProduct.data() )
+                    myArray.push( matchingProduct.data() )
+                })
+                return myArray[0]
+            }
+            else {
+                return null
+            }
+            
+        }
+        catch( error ) {
+            throw new Error(`failed to fetch details of selected product due to error, ${ error.code }: ${ error.message }`)
+        }
+
+
     }
 
  
+
+
+
+
+
 
   
 }

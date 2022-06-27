@@ -9,6 +9,10 @@ const Query = require('./graphql/queryResolvers.js')
 const Mutation = require('./graphql/mutationResolvers.js')
 
 
+// to use firebase storage in client sdk instead of admin sdk
+global.XMLHttpRequest = require('xhr2')
+
+
 
 // the type definitions.
 const typeDefs = gql `
@@ -24,6 +28,34 @@ const typeDefs = gql `
     }
 
 
+    type Product {
+        name: String!
+        manufacturer: String!
+        productType: String!
+        gender: String!
+        price: String!
+        dateAdded: String!
+        yearReleased: String!
+        coverPhotoUrl: String!
+        extraPhotoUrl1: String!
+        extraPhotoUrl2: String!
+        extraPhotoUrl3: String
+        extraPhotoUrl4: String
+    }
+
+
+    type CartItem {
+        name: String!
+        price: String!
+        coverPhotoUrl: String!
+        quantity: Int!
+        userEmail: String
+
+    }
+
+
+   
+
     # inputs
     input registerNewUserInputType {
         username: String!
@@ -33,14 +65,43 @@ const typeDefs = gql `
     }
 
 
+    input addNewProductInputType {
+        name: String!
+        manufacturer: String!
+        productType: String!
+        gender: String!
+        price: String!
+        dateAdded: String
+        yearReleased: String
+        coverPhotoUrl: String!
+        extraPhotoUrl1: String!
+        extraPhotoUrl2: String!
+        extraPhotoUrl3: String
+        extraPhotoUrl4: String
+
+    }
+
+
+    input addToCartInputType {
+        name: String!
+        price: String!
+        coverPhotoUrl: String!
+        quantity: Int!
+        userEmail: String
+
+    }
+
 
     # Queries.
     type Query {
-        FetchAllUsers: [User]
+        FetchAllUsers: [ User ]
         FetchParticularUser( email: String! ): User
         GetCurrentLoggedInUser: String!
         CheckUserVerifiedStatus: String!
         FetchCurrentUserDetails: User
+        FetchProductImages( productName: String!, fileName:String! ) : String!
+        FetchAllProducts: [ Product ] 
+        GetSelectedProductDetails( productName: String! ) : Product
 
     }
 
@@ -54,6 +115,8 @@ const typeDefs = gql `
         UpdateUserEmail( newEmail: String! ): String!
         UpdateUserPassword( newPassword: String! ): String!
         UpdateUserProfile( displayName: String!, photoUrl: String! ): String!
+        AddNewProduct( addNewProductInput: addNewProductInputType ) : Product!
+        AddProductToCart( addToCartInputType: addToCartInputType) : CartItem!
 
     }
 

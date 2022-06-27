@@ -134,6 +134,65 @@ let Mutation = {
             throw new UserInputError(`failed to update user password due to error: ${ error.code }: ${ error.message }`)
         }
 
+    }, // end of update user profile.
+
+
+    AddNewProduct: async function( parent, args, ctx, info ) {
+        try {
+            let product = {
+                name: args.addNewProductInput.name,
+                manufacturer: args.addNewProductInput.manufacturer,
+                productType: args.addNewProductInput.productType,
+                gender: args.addNewProductInput.gender,
+                price: args.addNewProductInput.price,
+                dateAdded: new Date().toLocaleDateString() + ' @ ' + new Date().toLocaleTimeString(),
+                yearReleased: args.addNewProductInput.yearReleased,
+                coverPhotoUrl: args.addNewProductInput.coverPhotoUrl,
+                extraPhotoUrl1: args.addNewProductInput.extraPhotoUrl1,
+                extraPhotoUrl2: args.addNewProductInput.extraPhotoUrl2,
+                extraPhotoUrl3: args.addNewProductInput.extraPhotoUrl3,
+                extraPhotoUrl4: args.addNewProductInput.extraPhotoUrl4
+        
+            }
+
+            let newProduct = await fireStore.collection('Added Products Collection').add( product )
+            return product
+
+        }
+        catch( error ) {
+            throw new Error(`failed to upload new data due to error; ${ error.code }: ${ error.message }`)
+        }
+
+    }, // end of add new product.
+
+
+    AddProductToCart: async function ( parent, args, ctx, info ) {
+        try {
+            let currentUser = firebaseAuth.currentUser
+            if ( currentUser ) {
+                let newCartItem = {
+                    name: args.addToCartInputType.name,
+                    price: args.addToCartInputType.price,
+                    coverPhotoUrl: args.addToCartInputType.coverPhotoUrl,
+                    quantity: args.addToCartInputType.quantity,
+                    user: currentUser.email
+                }
+
+                await fireStore.collection('Carts Collection').add( newCartItem )
+                return newCartItem
+
+            } 
+            else {
+                console.log('no current user')
+                return null
+            }
+
+
+        }
+        catch( error ) {
+            throw new Error(`couldn't add item to cart due to error, ${ error.code }: ${ error.message }`)
+        }
+
     }
 
 
