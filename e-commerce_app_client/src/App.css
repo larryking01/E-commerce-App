@@ -1,0 +1,171 @@
+/* .App {
+  text-align: center;
+} */
+
+
+/* Products.js styling */
+.fetching-products-div {
+  text-align: center;
+
+}
+
+
+.products-fetched-div {
+  margin-top: 7%;
+  margin-left: 5%;
+  margin-right: 5%;
+
+}
+
+
+.error-div {
+  text-align: center;
+
+}
+
+
+.card-style {
+  max-width: 390px;
+  height: 480px;
+  cursor: pointer;
+  text-align: center;
+
+}
+
+
+.product-image {
+  max-width: 100%;
+  height: 80%;
+  transition: transform 0.3s ease;
+
+}
+
+
+.product-image:hover {
+  transform: scale(1.035);
+}
+
+
+
+.cover-img {
+  width: 100%;
+  max-height: 520px;
+  filter: brightness(80%);
+
+}
+
+
+.cover-img-text-header {
+  position: absolute;
+  bottom: 50%;
+  left: 10%;
+  font-size: 5rem;
+
+}
+
+
+.cover-img-text-sub {
+  position: absolute;
+  bottom: 45%;
+  left: 10%;
+
+}
+
+
+.cover-img-btn {
+  position: absolute;
+  bottom: 30%;
+  left: 10%;
+  width: 20%;
+}
+
+
+.slick-prev {
+  left: 3% !important;
+  z-index: 1;
+
+}
+
+
+
+.slick-next {
+  right: 3% !important;
+  z-index: 1;
+
+}
+
+
+
+/* Scroll to top btn styling */
+/* .top-to-btm {
+  position: relative;
+} */
+
+
+.icon-position  {
+  position: fixed;
+  bottom: 40px;
+  right: 25px;
+  z-index: 20;
+}
+
+
+.icon-style {
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  color: black;
+  cursor: pointer;
+  animation: movebtn 3s ease-in-out infinite;
+  transition: all .5s ease-in-out;
+  
+}
+
+
+.icon-style:hover{
+  animation: none;
+  background: #fff;
+  color: #551B54;
+  border: 1px solid #551B54;
+}
+@keyframes movebtn {
+  0%{
+    transform: translateY(0px);
+  }
+  25%{
+    transform: translateY(20px);
+  }
+  50%{
+    transform: translateY(0px);
+  }
+  75%{
+    transform: translateY(-20px);
+  }
+  100%{
+    transform: translateY(0px);
+  }
+}
+
+
+
+/* selected products link */
+.product-details-link {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+
+
+/* selected products details styling */
+.selected-product-details-col {
+  
+
+}
+
+
+.add-to-cart-btn {
+  width: 300px
+}
